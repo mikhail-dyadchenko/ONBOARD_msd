@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_29_134219) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_29_162318) do
   create_table "categories", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_134219) do
     t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "datetime"
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
@@ -40,8 +41,28 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_134219) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "img"
+    t.string "tag"
+    t.datetime "datetime"
+  end
+
+  create_table "premia", force: :cascade do |t|
+    t.integer "profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_premia_on_profile_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "name"
+    t.string "avatar"
+    t.text "bio"
+    t.string "contact"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "comments", "posts"
   add_foreign_key "communities", "posts"
+  add_foreign_key "premia", "profiles"
 end
