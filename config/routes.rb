@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :communities
   resources :posts do
     resources :comments
   end
