@@ -2,6 +2,10 @@
   <div>
     <%= link_to "Главная", root_url %>
     <%= link_to "Сообщества", communities_url %>
+
+    <% if user_signed_in? && current_user.admin? %>
+      <%= link_to "Подписки", admin_subscriptions_url %>
+    <% end %>
   </div>
 
   <div>

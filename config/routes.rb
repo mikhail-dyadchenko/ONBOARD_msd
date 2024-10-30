@@ -5,8 +5,12 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+
+  resources :subscriptions, only: [ :create ]
+
   namespace :admin do
     resources :posts, only: [ :index ]
+    resources :subscriptions
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -19,6 +23,9 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  get "welcome/index"
+  get "welcome/about"
+
   # Defines the root path route ("/")
-  root "posts#index"
+  root "welcome#index"
 end

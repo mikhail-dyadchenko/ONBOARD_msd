@@ -7,9 +7,10 @@ class Ability
         # Define abilities for the user here. For example:
 
         can :read, Post, public: true
+        can :create, Subscription
 
-        return unless user.present?  # additional permissions for logged in users (they can read their own posts)
-        can :read, Post, user: user
+        return unless user.admin?  # additional permissions for administrators
+        can :manage, :all
 
     # return unless user.admin?  # additional permissions for administrators
     # can :read, Post
